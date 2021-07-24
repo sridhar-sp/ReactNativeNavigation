@@ -1,0 +1,20 @@
+{
+    "navigationList": [
+        {
+            "title": "Stack",
+            "key": "stack"
+        },
+        {
+            "title": "Drawer",
+            "key": "drawer"
+        },
+        {
+            "title": "Top tab",
+            "key": "top-tab"
+        },
+        {
+            "title": "Bottom tab",
+            "key": "bottom-tab"
+        }
+    ]
+}

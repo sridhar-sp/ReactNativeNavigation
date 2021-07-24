@@ -1,8 +1,20 @@
 import React from 'react';
-import {Text} from 'react-native';
+
+import {createStackNavigator} from '@react-navigation/stack';
+import StackScreenOne from './StackScreenOne';
 
 const StackNavigationScreen: React.FC<{}> = () => {
-  return <Text>Hello World 56</Text>;
+  type RootStackParamList = {
+    StackScreenOne: undefined;
+  };
+
+  const Stack = createStackNavigator<RootStackParamList>();
+
+  return (
+    <Stack.Navigator initialRouteName={'StackScreenOne'}>
+      <Stack.Screen name="StackScreenOne" component={StackScreenOne} />
+    </Stack.Navigator>
+  );
 };
 
 export default StackNavigationScreen;
