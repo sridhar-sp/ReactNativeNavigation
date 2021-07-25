@@ -1,31 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from './types';
 import {RouteProp} from '@react-navigation/native';
-
-type TextButtonProps = {
-  title: string;
-  onPress?: () => void;
-};
-
-const TextButton = ({title, onPress}: TextButtonProps) => {
-  return (
-    <TouchableOpacity style={styles.item} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
-  );
-};
-
-export type NavigationItem = {
-  title: string;
-  key: string;
-};
+import GridList, {Item} from '../common/components/GridList';
 
 export type NavigationListScreenProps = {
-  navigationList: Array<NavigationItem>;
-  onPress?: (key: string) => void;
+  navigationList: Array<Item>;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<
@@ -40,20 +22,15 @@ type Prop = {
   route: HomeScreenRoute;
 };
 
-const NavigationList: React.FC<Prop> = ({route}) => {
+const NavigationList: React.FC<Prop> = ({route, navigation}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        {route.params.navigationList.map(navigationItem => (
-          <TextButton
-            title={navigationItem.title}
-            key={navigationItem.key}
-            onPress={() => {
-              route.params.onPress?.(navigationItem.key);
-            }}
-          />
-        ))}
-      </View>
+      <GridList
+        list={route.params.navigationList}
+        onPress={navigationItem => {
+          navigation.navigate(navigationItem);
+        }}
+      />
     </View>
   );
 };
@@ -62,24 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 8,
-  },
-  row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  item: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2196F3',
-    minHeight: '20%',
-    minWidth: '49%',
-    marginTop: '2%',
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 18,
   },
 });
 

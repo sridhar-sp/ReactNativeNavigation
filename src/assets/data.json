@@ -2,7 +2,7 @@
     "navigationList": [
         {
             "title": "Stack",
-            "key": "stack"
+            "key": "StackNavigationScreen"
         },
         {
             "title": "Drawer",

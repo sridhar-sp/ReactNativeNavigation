@@ -19,22 +19,23 @@ const App = () => {
   const data = require('../assets/data.json');
   const Stack = createStackNavigator<RootStackParamList>();
 
+  const navigationRef = React.createRef();
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={'NavigationListScreen'}>
         <Stack.Screen
           name="NavigationListScreen"
           component={NavigationList}
-          initialParams={{
-            navigationList: data.navigationList,
-            onPress: key => {
-              console.log(key);
-            },
-          }}
+          initialParams={{navigationList: data.navigationList}}
         />
         <Stack.Screen
           name="StackNavigationScreen"
           component={StackNavigationScreen}
+          options={{
+            title: 'Home',
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
